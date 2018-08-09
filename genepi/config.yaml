@@ -1,0 +1,22 @@
+params:
+  trimming:
+  assembly:
+  prediction:
+  dereplication:
+  profilling:
+
+results:
+  raw:
+  trimming:
+  assembly:
+  prediction:
+  dereplication:
+  profilling:
+
+logs:
+  raw:
+  trimming:
+  assembly:
+  prediction:
+  dereplication:
+  profilling:

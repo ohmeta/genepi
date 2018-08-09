@@ -1,0 +1,23 @@
+#!/usr/bin/env snakemake
+
+shell.executable("bash")
+
+configfile: "config.yaml"
+
+def parse_samples(samples_tsv):
+    samples = pandas.read_table(samples_tsv).set_index("id", drop=False)
+    return samples
+
+_samples = parse_samples(config["results"]["raw"]["samples"])
+
+include: "rules/step.smk"
+include: "rules/trimming.smk"
+include: "rules/rmhost.smk"
+include: "rules/assembly.smk"
+include: "rules/prediction.smk"
+include: "rules/dereplication.smk"
+include: "rules/profilling.smk"
+
+rule all:
+    input:
+        profilling_target
