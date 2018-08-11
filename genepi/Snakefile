@@ -1,8 +1,7 @@
 #!/usr/bin/env snakemake
+import pandas
 
 shell.executable("bash")
-
-configfile: "config.yaml"
 
 def parse_samples(samples_tsv):
     samples = pandas.read_table(samples_tsv).set_index("id", drop=False)
