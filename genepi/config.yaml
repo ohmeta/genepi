@@ -1,22 +1,52 @@
 params:
+  cluster:
+    queue: "st.q"
+    project: "st.m"
+  simulation:
+    taxid: ["362948", "321967", "1125630", "702459", "226186", "272563"]
+    n_genomes: 6
+    n_reads: "5M"
+    model: "hiseq"
+    threads: 8
   trimming:
+    oas1:
+      qual_system: 33
+      min_length: 45
+      seed_oa: 0.9
+      fragment_oa: 0.8
+  rmhost:
   assembly:
+    megahit:
+      min_contig: 500
+      threads: 8
   prediction:
+    prodigal:
+      format: "gff"
+      mode: "meta"
   dereplication:
+    cdhit:
   profilling:
 
 results:
+  host:
+    fasta: "results/00.host/host.fa"
+    prefix: "results/00.host/host.fa"
+  simulation: "results/00.simulation"
   raw:
-  trimming:
-  assembly:
-  prediction:
-  dereplication:
-  profilling:
+    samples: "results/01.raw/samples.tsv"
+  trimming: "results/02.trimming"
+  rmhost: "results/03.rmhost"
+  assembly: "results/04.assembly"
+  prediction: "results/05.prediction"
+  dereplication: "results/06.dereplication"
+  profilling: "results/07.profilling"
 
 logs:
-  raw:
-  trimming:
-  assembly:
-  prediction:
-  dereplication:
-  profilling:
+  simulation: "assay/00.simulation/logs"
+  raw: "assay/01.raw/logs"
+  trimming: "assay/02.trimming/logs"
+  rmhost: "assay/03.rmhost/logs"
+  assembly: "assay/04.assembly/logs"
+  prediction: "assay/05.prediction/logs"
+  dereplication: "assay/06.dereplication/logs"
+  profilling: "assay/07.profilling/logs"
