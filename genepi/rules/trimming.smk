@@ -1,4 +1,4 @@
-rule trimming_oas1:
+rule trimming:
     input:
         r1 = lambda wildcards: get_sample_id(_samples, wildcards, "fq1"),
         r2 = lambda wildcards: get_sample_id(_samples, wildcards, "fq2")
