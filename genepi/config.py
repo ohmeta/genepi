@@ -30,7 +30,7 @@ class metaconfig:
     '''
     config project directory
     '''
-    sub_dirs = ["assay", "results", "results/00.simulation"]
+    sub_dirs = ["assay", "results", "results/00.simulation", "results/01.raw"]
 
     def __init__(self, work_dir):
         self.work_dir = os.path.realpath(work_dir)
@@ -43,8 +43,7 @@ class metaconfig:
                                         "results/00.simulation/samples.tsv")
 
     def __str__(self):
-        message = "a gene catalogue construction \
-        project has been created at {0}".format(self.work_dir)
+        message = "a gene catalogue construction project has been created at {0}".format(self.work_dir)
         return message
 
     def create_dirs(self):

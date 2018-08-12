@@ -7,16 +7,20 @@ def parse_samples(samples_tsv):
     samples = pandas.read_table(samples_tsv).set_index("id", drop=False)
     return samples
 
+def get_sample_id(sample_df, wildcards, col):
+    return sample_df.loc[wildcards.sample, [col]].dropna()[0]
+
 _samples = parse_samples(config["results"]["raw"]["samples"])
 
 include: "rules/step.smk"
+include: "rules/simulation.smk"
 include: "rules/trimming.smk"
 include: "rules/rmhost.smk"
 include: "rules/assembly.smk"
 include: "rules/prediction.smk"
 include: "rules/dereplication.smk"
-include: "rules/profilling.smk"
+#include: "rules/profilling.smk"
 
 rule all:
     input:
-        profilling_target
+        dereplication_target

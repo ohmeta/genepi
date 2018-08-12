@@ -4,7 +4,7 @@ params:
     project: "st.m"
   simulation:
     taxid: ["362948", "321967", "1125630", "702459", "226186", "272563"]
-    n_genomes: 6
+    n_genomes: 4
     n_reads: "5M"
     model: "hiseq"
     threads: 8
@@ -15,6 +15,8 @@ params:
       seed_oa: 0.9
       fragment_oa: 0.8
   rmhost:
+    do: False
+    threads: 8
   assembly:
     megahit:
       min_contig: 500
@@ -25,15 +27,25 @@ params:
       mode: "meta"
   dereplication:
     cdhit:
+      identity: 0.95
+      overlap: 0.9
+      wordlen: 8
+      global: True
+      memory: 0
+      clstrlen: 20
+      algorithm: False
+      threads: 8
   profilling:
 
 results:
   host:
     fasta: "results/00.host/host.fa"
     prefix: "results/00.host/host.fa"
-  simulation: "results/00.simulation"
+  simulation:
+    genomes: "results/00.simulation"
   raw:
     samples: "results/01.raw/samples.tsv"
+    reads: "results/01.taw"
   trimming: "results/02.trimming"
   rmhost: "results/03.rmhost"
   assembly: "results/04.assembly"
