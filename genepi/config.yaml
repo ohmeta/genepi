@@ -41,8 +41,7 @@ results:
   host:
     fasta: "results/00.host/host.fa"
     prefix: "results/00.host/host.fa"
-  simulation:
-    genomes: "results/00.simulation"
+  simulation: "results/00.simulation"
   raw:
     samples: "results/01.raw/samples.tsv"
     reads: "results/01.taw"

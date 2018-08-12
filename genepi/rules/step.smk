@@ -1,10 +1,10 @@
 simulation_output = expand(
     [
-        "{genomes}/species_metadata.tsv",
-        "{genomes}/{sample}_genome.fa",
+        "{simulation}/species_metadata.tsv",
+        "{simulation}/{sample}_genome.fa",
         "{reads}/{sample}_{read}.fq.gz"
     ],
-    genomes=config["results"]["simulation"]["genomes"],
+    simulation=config["results"]["simulation"],
     reads=config["results"]["raw"]["reads"],
     read=["1", "2"],
     sample=_samples.index)
