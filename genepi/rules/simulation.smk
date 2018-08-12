@@ -59,14 +59,13 @@ rule genome_simulation:
         abundance = os.path.join(config["results"]["raw"]["reads"], "{sample}_abundance.txt")
     params:
         model = config["params"]["simulation"]["model"],
-        n_genomes = config["params"]["simulation"]["n_genomes"],
         n_reads = config["params"]["simulation"]["n_reads"],
         prefix = os.path.join(config["results"]["raw"]["reads"], "{sample}")
     threads:
         config["params"]["simulation"]["threads"]
     shell:
         '''
-        iss generate --cpus {threads} --genomes {input} --n_genomes {params.n_genomes} --n_reads {params.n_reads} --model {params.model} --output {params.prefix}
+        iss generate --cpus {threads} --genomes {input} --n_reads {params.n_reads} --model {params.model} --output {params.prefix}
         pigz {params.prefix}_R1.fastq
         pigz {params.prefix}_R2.fastq
         mv {params.prefix}_R1.fastq.gz {output.r1}
