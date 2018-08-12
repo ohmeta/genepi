@@ -44,7 +44,7 @@ results:
   simulation: "results/00.simulation"
   raw:
     samples: "results/01.raw/samples.tsv"
-    reads: "results/01.taw"
+    reads: "results/01.raw"
   trimming: "results/02.trimming"
   rmhost: "results/03.rmhost"
   assembly: "results/04.assembly"
