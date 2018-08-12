@@ -1,7 +1,19 @@
+def assembly_inputs(wildcards):
+    if config["params"]["rmhost"]["do"]:
+        return expand("{rmhost}/{sample}.rmhost.{read}.fq.gz",
+                      rmhost=config["results"]["rmhost"],
+                      sample=wildcards.sample,
+                      read=["1", "2"])
+    else:
+        return expand("{trimming}/{sample}.trimmed.{read}.fq.gz",
+                      trimming=config["results"]["trimming"],
+                      sample=wildcards.sample,
+                      read=["1", "2"])
+
+
 rule assembly:
     input:
-        r1 = os.path.join(config["results"]["rmhost"], "{sample}.rmhost.1.fq.gz"),
-        r2 = os.path.join(config["results"]["rmhost"], "{sample}.rmhost.2.fq.gz")
+        assembly_inputs
     output:
         contigs = os.path.join(config["results"]["assembly"],
                                "{sample}.megahit_out/{sample}.contigs.fa.gz"),
@@ -14,13 +26,13 @@ rule assembly:
     threads:
         config["params"]["assembly"]["megahit"]["threads"]
     log:
-        os.path.join(config["logs"]["assembly"]["megahit"], "{sample}.megahit.log")
+        os.path.join(config["logs"]["assembly"], "{sample}.megahit.log")
     shell:
         '''
         rm -rf {params.out_dir}
         megahit \
-        -1 {input.r1} \
-        -2 {input.r2} \
+        -1 {input[0]} \
+        -2 {input[1]} \
         -t {threads} \
         --min-contig-len {params.min_contig} \
         --out-dir {params.out_dir} \
