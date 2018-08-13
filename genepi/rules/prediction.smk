@@ -1,7 +1,7 @@
 rule prediction:
     input:
         os.path.join(config["results"]["assembly"],
-                     "{sample}.megahit_out/{sample}.contigs.fa.gz")
+                     "{sample}.megahit_out/{sample}.contigs.fa")
     output:
         pep = os.path.join(config["results"]["prediction"], "{sample}.pep.faa"),
         cds = os.path.join(config["results"]["prediction"], "{sample}.cds.ffn"),

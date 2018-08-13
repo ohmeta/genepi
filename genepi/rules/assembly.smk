@@ -16,7 +16,7 @@ rule assembly:
         assembly_inputs
     output:
         contigs = os.path.join(config["results"]["assembly"],
-                               "{sample}.megahit_out/{sample}.contigs.fa.gz"),
+                               "{sample}.megahit_out/{sample}.contigs.fa"),
         intermediate = temp(directory(os.path.join(config["results"]["assembly"],
                                                    "{sample}.megahit_out/intermediate_contigs")))
     params:
@@ -37,5 +37,5 @@ rule assembly:
         --min-contig-len {params.min_contig} \
         --out-dir {params.out_dir} \
         --out-prefix {params.out_prefix} 2> {log}
-        pigz {params.out_dir}/{params.out_prefix}.contigs.fa
+        sed -i 's#^>#>'"{params.out_prefix}"'_#g' {output.contigs}
         '''

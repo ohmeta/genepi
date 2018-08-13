@@ -1,7 +1,6 @@
 simulation_output = expand(
     [
-        "{simulation}/species_metadata.tsv",
-        "{simulation}/{sample}_genome.fa",
+        "{simulation}/species_metadata.tsv", "{simulation}/{sample}_genome.fa",
         "{reads}/{sample}_{read}.fq.gz"
     ],
     simulation=config["results"]["simulation"],
@@ -25,7 +24,7 @@ rmhost_output = expand(
     sample=_samples.index)
 
 assembly_output = expand(
-    "{assembly}/{sample}.megahit_out/{sample}.contigs.fa.gz",
+    "{assembly}/{sample}.megahit_out/{sample}.contigs.fa",
     assembly=config["results"]["assembly"],
     sample=_samples.index)
 
@@ -36,10 +35,7 @@ prediction_output = expand(
     sample=_samples.index)
 
 dereplication_output = expand(
-    [
-        "{dereplication}/gene_merged.fa",
-        "{dereplication}/geneset.fa"
-    ],
+    ["{dereplication}/gene_merged.fa", "{dereplication}/geneset.fa"],
     dereplication=config["results"]["dereplication"])
 
 #profilling_output = expand()
