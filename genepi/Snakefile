@@ -18,9 +18,10 @@ include: "rules/trimming.smk"
 include: "rules/rmhost.smk"
 include: "rules/assembly.smk"
 include: "rules/prediction.smk"
-include: "rules/dereplication.smk"
+include: "rules/clustering.smk"
+include: "rules/alignment.smk"
 #include: "rules/profilling.smk"
 
 rule all:
     input:
-        dereplication_target
+        alignment_target

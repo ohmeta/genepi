@@ -25,15 +25,19 @@ params:
     prodigal:
       format: "gff"
       mode: "meta"
-  dereplication:
+  clustering:
     cdhit:
       identity: 0.95
       overlap: 0.9
       wordlen: 8
       global: True
       memory: 0
-      clstrlen: 20
-      algorithm: False
+      clstrlen: 0
+      default_algorithm: False
+      both_alignment: True
+      threads: 32
+  alignment:
+    bwa:
       threads: 8
   profilling:
 
@@ -49,7 +53,8 @@ results:
   rmhost: "results/03.rmhost"
   assembly: "results/04.assembly"
   prediction: "results/05.prediction"
-  dereplication: "results/06.dereplication"
+  clustering: "results/06.clustering"
+  alignment: "results/07.alignment"
   profilling: "results/07.profilling"
 
 logs:
@@ -59,5 +64,6 @@ logs:
   rmhost: "assay/03.rmhost/logs"
   assembly: "assay/04.assembly/logs"
   prediction: "assay/05.prediction/logs"
-  dereplication: "assay/06.dereplication/logs"
+  clustering: "assay/06.clustering/logs"
+  alignment: "assay/07.alignment/logs"
   profilling: "assay/07.profilling/logs"

@@ -34,9 +34,18 @@ prediction_output = expand(
     suffix=["pep.faa", "cds.ffn", "cds.gff", "score.gff"],
     sample=_samples.index)
 
-dereplication_output = expand(
-    ["{dereplication}/gene_merged.fa", "{dereplication}/geneset.fa"],
-    dereplication=config["results"]["dereplication"])
+clustering_output = expand(
+    [
+        "{clustering}/gene_merged.fa", "{clustering}/geneset.fa",
+        "{clustering}/geneset.fa.{suffix}"
+    ],
+    clustering=config["results"]["clustering"],
+    suffix=["amb", "ann", "bwt", "pac", "sa"])
+
+alignment_output = expand(
+    "{alignment}/{sample}.bam",
+    alignment=config["results"]["alignment"],
+    sample=_samples.index)
 
 #profilling_output = expand()
 
@@ -48,8 +57,9 @@ if config["params"]["rmhost"]["do"]:
 else:
     assembly_target = (trimming_target + assembly_output)
 prediction_target = (assembly_target + prediction_output)
-dereplication_target = (prediction_target + dereplication_output)
-#profilling_target = (dereplication_target + profilling_output)
+clustering_target = (prediction_target + clustering_output)
+alignment_target = (clustering_target + alignment_output)
+#profilling_target = (alignment_target + profilling_output)
 
 #all_target = (
 #    simulation_ouput + trimming_ouput + rmhost_output + assembly_output +
