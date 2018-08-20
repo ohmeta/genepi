@@ -25,4 +25,4 @@ python genepi/genepi.py --help
 snakemke --snakefile genepi/Snakefile --configflie genepi/config.yaml --list
 ```
 
-<img src="docs/dat.svg">
+<img src="docs/dag.svg">
