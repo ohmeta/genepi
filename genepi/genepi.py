@@ -9,8 +9,9 @@ from config import metaconfig, parse_yaml, update_config
 __version__ = "0.1.0"
 
 steps = [
-    "simulation", "trimming", "rmhost", "assembly", "prediction",
-    "dereplication", "profilling"
+    "genome_download", "genome_merge", "genome_simulation", "trimming",
+    "host_index", "rmhost", "assembly", "prediction", "gene_merge",
+    "clustering", "geneset_index", "alignment", "all"
 ]
 
 
